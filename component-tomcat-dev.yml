@@ -6,8 +6,8 @@ application:
   configuration:
     input.quantity: 1 ### Hosts numbers
     input.app-port: 8080 ### Tomcat listen port
-    input.operating-system: {image: "us-east-1/ami-1ba18d72", identity: ec2-user} ###  image/identity pair for describing Operating system.
-    input.instance-size: "m1.small" ### EC2 Instance type
+    input.operating-system: {image: "ubuntu-1204-precise-v20160516", identity: gce-user} ###  image/identity pair for describing Operating system.
+    input.instance-size: "g1-small" # GCE Instance type
     input.java-opts: "-Duser.timezone=UTC" ### JAVA_OPTS
     input.recipe-url: "https://s3.amazonaws.com/qubell-starter-kit-artifacts/qubell-bazaar/component-tomcat-dev-cookbooks-stable-26d9846.tar.gz" ### Chef cookbooks url
 
@@ -56,11 +56,6 @@ application:
         input: # Contain pins with type: configuration().This type using for configuration parameters
           operating-system:
              type: configuration(map<string,object>)
-             suggestions: # Create dropdown menu in advanced launch
-                 "centos": {image: "us-east-1/ami-bf5021d6", identity: root}
-                 "amazon": {image: "us-east-1/ami-1ba18d72", identity: ec2-user}
-                 "ubuntu1204": {image: "us-east-1/ami-967edcff", identity: ubuntu}
-                 "ubuntu1004": {image: "us-east-1/ami-9f3906f6", identity: ubuntu}
           app-port:
              type: configuration(int)
              name: Application port
